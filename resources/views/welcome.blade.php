@@ -37,7 +37,7 @@
                 </div>
             @endif
         </div>
-        <div class="container h-100" ">
+        <div class="container h-100" >
             <div class="row"style="text-align:center;margin-top: 200px">
                 <div class="col">
                 <img src="/svg/logo.svg" style="max-height: 100px;max-width:100px">

@@ -5,14 +5,14 @@
     <div class="row">
         <div class="col">
         <div clas="card rounded" style="border: 1px solid;border-color:#ededed;max-width: 450px;">
-            <div class="card-header">{{"yet-to-do"}}</div>
+            <div class="card-header">{{"Yet-To-Do"}}</div>
             <div class="card-body">
             @foreach($incomplete as $ic)
                 <div>
                     <form action="{{route('incomplete')}}" method="get">
                         <input type="hidden" name="ic_id" value="{{$ic->ID}}">
                         <button class="btn btn-light rounded" style="width:400px">
-                            {{$ic->Task}}
+                            {{$ic->TASK}}
                         </button>
                     </form>
                 </div>
@@ -23,14 +23,14 @@
         </div>
         <div class ="col">
             <div class="card" style="max-width: 450px;">
-                <div class="card-header">{{"already done"}}</div>
+                <div class="card-header">{{"Already Done"}}</div>
                 <div class="card-body">
                     @foreach($complete as $cc)
                         <div>
                             <form action="{{route('complete')}}" method="get">
                                 <input type="hidden" name="cc_id" value="{{$cc->ID}}">
                                 <button class="btn btn-light rounded"  style="width:400px">
-                                    {{$cc->Task}}
+                                    {{$cc->TASK}}
                                 </button>
                             </form>
                         </div>
