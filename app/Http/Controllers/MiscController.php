@@ -22,5 +22,4 @@ class MiscController extends Controller
     {
         return event(new \App\Event\TaskEvent('hello world'));
     }
-    
 }

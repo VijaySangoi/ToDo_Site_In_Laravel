@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Event\TaskEvent;
 use Illuminate\Http\Request;
 use App\Models\Task;
@@ -15,41 +16,37 @@ class ButtonController extends Controller
 
     public function insert(Request $req)
     {
-        $data=new Task();
-        $data->user_id=$req->uid;
-        $data->Task=$req->task_req;
-        $data->IsCompleted=0;
+        $data = new Task();
+        $data->user_id = $req->uid;
+        $data->Task = $req->task_req;
+        $data->IsCompleted = 0;
         $data->save();
-        $req->session()->forget(['uid','task_req']);
+        $req->session()->forget(['uid', 'task_req']);
         #$email=User::select('email')->where('id',Auth::user()->id)->get();
-        event(new TaskEvent([Auth::user()->id,'new Task added',$req->task_req]));
+        event(new TaskEvent([Auth::user()->id, 'new Task added', $req->task_req]));
         Log::info('new task success');
-        return Redirect::back()->with('success','new Task added');
-
+        return Redirect::back()->with('success', 'new Task added');
     }
     public function incomplete(Request $req)
     {
-        $id=$req->ic_id;
-        Task::where('id',$id)->update(['IsCompleted'=>1]);
+        $id = $req->ic_id;
+        Task::where('id', $id)->update(['IsCompleted' => 1]);
         $req->session()->forget('ic_id');
         #$email=User::select('email')->find(Auth::user()->id);
-//        var_dump($email);die();
-        event(new TaskEvent([Auth::user()->id,'new Task completed',$req->ic_id]));
+        //        var_dump($email);die();
+        event(new TaskEvent([Auth::user()->id, 'new Task completed', $req->ic_id]));
         Log::info('new task completed');
-        return Redirect::back()->with('success','new Task completed');
-
-
+        return Redirect::back()->with('success', 'new Task completed');
     }
 
     public function complete(Request $req)
     {
-        $id=$req->cc_id;
-        Task::where('id',$id)->update(['IsCompleted'=>0]);
+        $id = $req->cc_id;
+        Task::where('id', $id)->update(['IsCompleted' => 0]);
         $req->session()->forget('cc_id');
         #$email=User::select('email')->where('id',Auth::user()->id)->get();
-        event(new TaskEvent([Auth::user()->id,'new Task resetted',$req->cc_id]));
+        event(new TaskEvent([Auth::user()->id, 'new Task resetted', $req->cc_id]));
         Log::info('new task resetted');
-        return Redirect::back()->with('success','new Task resetted');
-
+        return Redirect::back()->with('success', 'new Task resetted');
     }
 }

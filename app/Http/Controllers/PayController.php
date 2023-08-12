@@ -13,21 +13,21 @@ class PayController extends Controller
     {
         return view('pay');
     }
-    public function verify( Request $request){
-
+    public function verify(Request $request)
+    {
         \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
-        try{
+        try {
             \Stripe\Charge::create(array(
-                "amount"=>300*100,
-                "currency"=>"usd",
-                "source"=>$request->input('stripeToken'),
-                "description"=>"Test Payment",
+                "amount" => 300 * 100,
+                "currency" => "usd",
+                "source" => $request->input('stripeToken'),
+                "description" => "Test Payment",
             ));
 
-            return Redirect::back()->with('mes','success');
-        }catch (\Exception $e){
+            return Redirect::back()->with('mes', 'success');
+        } catch (\Exception $e) {
 
-            return Redirect::back()->with('mes','error'.$e);
+            return Redirect::back()->with('mes', 'error' . $e);
         }
     }
 }

@@ -12,7 +12,7 @@ class email
 {
     public function dispatch()
     {
-        return self::eemail('vijaysangoi29@gmail.com','insert','get a golden tooth');
+        return self::eemail('vijaysangoi29@gmail.com', 'insert', 'get a golden tooth');
     }
     static function eemail($email, $subject, $message)
     {

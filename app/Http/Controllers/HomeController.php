@@ -14,22 +14,17 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');//??//reload//user notify//log generate
+        $this->middleware('auth'); //??//reload//user notify//log generate
     }
 
 
     public function index()
     {
-        $id=Auth::user()->id;
+        $id = Auth::user()->id;
         #echo $id;
         #where(['user_id'=>$id],['IsCompleted'=>0]);
-        $incomplete = Task::where(['user_id'=>$id,'IsCompleted'=>0])->get();
-        $complete =Task::where(['user_id'=>$id,'IsCompleted'=>1])->get();
-        return view('home',['incomplete'=>$incomplete,'complete'=>$complete]);
-
+        $incomplete = Task::where(['user_id' => $id, 'IsCompleted' => 0])->get();
+        $complete = Task::where(['user_id' => $id, 'IsCompleted' => 1])->get();
+        return view('home', ['incomplete' => $incomplete, 'complete' => $complete]);
     }
-
-
-
 }
-

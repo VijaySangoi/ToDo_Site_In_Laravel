@@ -22,7 +22,7 @@ class TaskEvent
     public function __construct($message)
     {
 
-        $this->message =$message;
+        $this->message = $message;
     }
 
     /**
