@@ -9,11 +9,14 @@ use Illuminate\Support\Facades\Redirect;
 
 class PayController extends Controller
 {
+    public function index()
+    {
+        return view('pay');
+    }
     public function verify( Request $request){
 
         \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
         try{
-            echo 'reached here';
             \Stripe\Charge::create(array(
                 "amount"=>300*100,
                 "currency"=>"usd",
