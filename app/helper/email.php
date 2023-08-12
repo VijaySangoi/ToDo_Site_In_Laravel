@@ -2,8 +2,6 @@
 
 namespace App\helper;
 
-require '../../vendor/autoload.php';
-
 use Aws\Ses\SesClient;
 use Aws\Exception\AwsException;
 use Illuminate\Support\Facades\Log;

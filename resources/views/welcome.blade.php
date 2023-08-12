@@ -406,7 +406,7 @@
             @auth
             <a href="{{ url('/home') }}" class="text-sm text-gray-700 underline">Home</a>
             @else
-            <a href="{{ route('documentation') }}" class="ml-4 text-sm text-gray-700 underline">Documentation</a>
+            <a href="{{ '/api/documentation' }}" class="ml-4 text-sm text-gray-700 underline">Swagger Api</a>
             <a href="{{ route('login') }}" class="ml-4 text-sm text-gray-700 underline">Log in</a>
 
             @if (Route::has('register'))
