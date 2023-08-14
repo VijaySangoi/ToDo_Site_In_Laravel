@@ -18,8 +18,8 @@ class ButtonController extends Controller
     {
         $data = new Task();
         $data->user_id = $req->uid;
-        $data->Task = $req->task_req;
-        $data->IsCompleted = 0;
+        $data->task = $req->task_req;
+        $data->is_completed = 0;
         $data->save();
         $req->session()->forget(['uid', 'task_req']);
         #$email=User::select('email')->where('id',Auth::user()->id)->get();
@@ -30,7 +30,7 @@ class ButtonController extends Controller
     public function incomplete(Request $req)
     {
         $id = $req->ic_id;
-        Task::where('id', $id)->update(['IsCompleted' => 1]);
+        Task::where('id', $id)->update(['is_completed' => 1]);
         $req->session()->forget('ic_id');
         #$email=User::select('email')->find(Auth::user()->id);
         //        var_dump($email);die();
@@ -42,7 +42,7 @@ class ButtonController extends Controller
     public function complete(Request $req)
     {
         $id = $req->cc_id;
-        Task::where('id', $id)->update(['IsCompleted' => 0]);
+        Task::where('id', $id)->update(['is_completed' => 0]);
         $req->session()->forget('cc_id');
         #$email=User::select('email')->where('id',Auth::user()->id)->get();
         event(new TaskEvent([Auth::user()->id, 'new Task resetted', $req->cc_id]));

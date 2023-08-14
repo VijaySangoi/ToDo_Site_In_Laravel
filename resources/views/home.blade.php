@@ -10,9 +10,9 @@
                     @foreach($incomplete as $ic)
                     <div>
                         <form action="{{route('incomplete')}}" method="get">
-                            <input type="hidden" name="ic_id" value="{{$ic->ID}}">
+                            <input type="hidden" name="ic_id" value="{{$ic->id}}">
                             <button class="btn btn-light rounded" style="width:400px">
-                                {{$ic->TASK}}
+                                {{$ic->task}}
                             </button>
                         </form>
                     </div>
@@ -28,9 +28,9 @@
                     @foreach($complete as $cc)
                     <div>
                         <form action="{{route('complete')}}" method="get">
-                            <input type="hidden" name="cc_id" value="{{$cc->ID}}">
+                            <input type="hidden" name="cc_id" value="{{$cc->id}}">
                             <button class="btn btn-light rounded" style="width:400px">
-                                {{$cc->TASK}}
+                                {{$cc->task}}
                             </button>
                         </form>
                     </div>
