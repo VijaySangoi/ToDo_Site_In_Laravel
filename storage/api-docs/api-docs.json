@@ -5,14 +5,233 @@
         "version": "0.1"
     },
     "paths": {
-        "/api/users": {
-            "get": {
-                "operationId": "e73db8180eb4b66a6c81291629cb3515",
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "generate a token",
+                "description": "generates a token for valid credential",
+                "operationId": "a3b306d14572d1f4bd6c064b3233e7b8",
+                "requestBody": {
+                    "description": "json body",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "username",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "username": {
+                                        "description": "username",
+                                        "type": "string",
+                                        "example": "admin"
+                                    },
+                                    "password": {
+                                        "description": "password",
+                                        "type": "string",
+                                        "example": "password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
                 "responses": {
                     "200": {
-                        "description": "An example endpoint"
+                        "description": "OK"
                     }
                 }
+            }
+        },
+        "/api/register": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "create a user",
+                "description": "create a user",
+                "operationId": "8a56853624e025573120a09a4c75d468",
+                "requestBody": {
+                    "description": "json body",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "username",
+                                    "email",
+                                    "password",
+                                    "confirm_password"
+                                ],
+                                "properties": {
+                                    "username": {
+                                        "description": "username",
+                                        "type": "string",
+                                        "example": "admin"
+                                    },
+                                    "email": {
+                                        "description": "email",
+                                        "type": "email",
+                                        "example": "sample123@gmail.com"
+                                    },
+                                    "password": {
+                                        "description": "password",
+                                        "type": "string",
+                                        "example": "password"
+                                    },
+                                    "confirm_password": {
+                                        "description": "same as password",
+                                        "type": "string",
+                                        "example": "password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/task": {
+            "get": {
+                "tags": [
+                    "Task"
+                ],
+                "summary": "fetch task",
+                "description": "list all task",
+                "operationId": "a8b9b66ca125557838d9ecf2b6f94dd8",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Task"
+                ],
+                "summary": "create task",
+                "description": "creation param",
+                "operationId": "4b0fa9acaea426467a868861522b8847",
+                "requestBody": {
+                    "description": "json body",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "task": {
+                                        "description": "task to do",
+                                        "type": "string",
+                                        "example": "get a golden tooth"
+                                    },
+                                    "is_completed": {
+                                        "description": "status",
+                                        "type": "boolean",
+                                        "example": "0"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ]
+            }
+        },
+        "/api/task/{id}": {
+            "put": {
+                "tags": [
+                    "Task"
+                ],
+                "summary": "update task",
+                "description": "update parameter",
+                "operationId": "da030da3a21207fa752835db4e9a17c8",
+                "requestBody": {
+                    "description": "json body",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "task": {
+                                        "description": "task to do",
+                                        "type": "string",
+                                        "example": "get a golden tooth"
+                                    },
+                                    "is_completed": {
+                                        "description": "status",
+                                        "type": "boolean",
+                                        "example": "0"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Task"
+                ],
+                "summary": "delete task",
+                "description": "just delete",
+                "operationId": "8ad6271a7b9801d676ba192c3ebb7364",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "Authorization": {
+                "type": "http",
+                "name": "Authorization",
+                "in": "header",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
             }
         }
     }
