@@ -30,6 +30,7 @@ class TaskController extends Controller
      *     summary="update task",
      *     description="update parameter",
      *     tags={"Task"},
+     *     @OA\Parameter(name="id",in="path"),
      *     @OA\RequestBody(
      *         required=true,
      *         description="json body",
@@ -81,6 +82,7 @@ class TaskController extends Controller
         $task = new Task();
         $task->user_id = $user_id;
         $task->task = $req->task;
+        $task->is_completed = 0;
         $task->save();
         return response()->json("task added",200);
     }
@@ -90,6 +92,7 @@ class TaskController extends Controller
      *     summary="delete task",
      *     description="just delete",
      *     tags={"Task"},
+     *     @OA\Parameter(name="id",in="path"),
      *     @OA\Response(response=200,description="OK"),
      *     security={{"Authorization": {}}},   
      * )

@@ -22,6 +22,6 @@ Route::post("/register",[\App\Http\Controllers\AuthController::class,'register']
 Route::middleware(['auth:sanctum'])->group(function(){
     Route::get("/task",[\App\Http\Controllers\TaskController::class,'get']);
     Route::post("/task",[\App\Http\Controllers\TaskController::class,'post']);
-    Route::put("/task",[\App\Http\Controllers\TaskController::class,'put']);
-    Route::delete("/task",[\App\Http\Controllers\TaskController::class,'delete']);
+    Route::put("/task/{id}",[\App\Http\Controllers\TaskController::class,'put']);
+    Route::delete("/task/{id}",[\App\Http\Controllers\TaskController::class,'delete']);
 });

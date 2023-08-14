@@ -170,6 +170,12 @@
                 "summary": "update task",
                 "description": "update parameter",
                 "operationId": "da030da3a21207fa752835db4e9a17c8",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path"
+                    }
+                ],
                 "requestBody": {
                     "description": "json body",
                     "required": true,
@@ -211,6 +217,12 @@
                 "summary": "delete task",
                 "description": "just delete",
                 "operationId": "8ad6271a7b9801d676ba192c3ebb7364",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK"
