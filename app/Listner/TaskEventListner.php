@@ -28,35 +28,34 @@ class TaskEventListner
      * @return void
      */
     public function handle(TaskEvent $event)
-    {   $x=[$event->message][0][0];
+    {
+        $x = [$event->message][0][0];
         $y = [$event->message][0][1];
-        $z=[$event->message][0][2];
+        $z = [$event->message][0][2];
         #dd($x);
-        $rough=User::select('email')->where('id',$x)->get();
-        $em=$rough[0]->email;
+        $rough = User::select('email')->where('id', $x)->get();
+        $em = $rough[0]->email;
         #dd($rough);
 
         switch ($y) {
             case 'insert':
-                $xs=new email();
-                $xs->eemail($em,$y,$z);
+                $xs = new email();
+                $xs->eemail($em, $y, $z);
 
                 break;
             case 'incomplete':
-                $d=Task::select('Task')->where('ID',$z)->get();
+                $d = Task::select('Task')->where('ID', $z)->get();
 
-                $s=$d[0]->Task;
-                $xs=new email();
-                $xs->eemail($em,$y,$s);
+                $s = $d[0]->Task;
+                $xs = new email();
+                $xs->eemail($em, $y, $s);
                 break;
             case 'complete':
-                $d=Task::select('Task')->where('ID',$z)->get();
-                $s=$d[0]->Task;
-                $xs=new email();
-                $xs->eemail($em,$y,$s);
+                $d = Task::select('Task')->where('ID', $z)->get();
+                $s = $d[0]->Task;
+                $xs = new email();
+                $xs->eemail($em, $y, $s);
                 break;
         }
-
     }
-
 }

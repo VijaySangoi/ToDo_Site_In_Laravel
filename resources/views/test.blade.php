@@ -6,7 +6,7 @@
         </a>
         </form>
     @endforeach--->
-    <!--- @foreach($complete as $cc)
+<!--- @foreach($complete as $cc)
         <form class="p-0" method="get">
         <a href="{{'/edit/'.$cc->id}}" class="btn btn-light" name="complete" style="width:400px;">
                             {{ $cc->task }}

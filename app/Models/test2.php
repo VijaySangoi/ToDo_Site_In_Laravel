@@ -8,7 +8,6 @@ use phpDocumentor\Reflection\Types\False_;
 
 class test2 extends Model
 {
-    protected $table='testing';
-    public $timestamps=false;
-
+    protected $table = 'testing';
+    public $timestamps = false;
 }

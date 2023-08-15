@@ -21,10 +21,10 @@ class TaskController extends Controller
     public function get(Request $req)
     {
         $task = Task::get();
-        if(!$task) return response()->json("task not found",500);
-        return response()->json($task,200);
+        if (!$task) return response()->json("task not found", 500);
+        return response()->json($task, 200);
     }
-     /**
+    /**
      * @OA\PUT(
      *     path="/api/task/{id}",
      *     summary="update task",
@@ -44,16 +44,16 @@ class TaskController extends Controller
      *     security={{"Authorization": {}}},   
      * )
      */
-    public function put(Request $req,$id)
+    public function put(Request $req, $id)
     {
-       $task = Task::where('id',$id)->first();
-       if(!$task) return response()->json("task not found",500);
-       $task->task = $req->task;
-       $task->is_completed = $req->is_completed ?? 0;
-       $task->save();
-       return response()->json("updated successfully",200);
+        $task = Task::where('id', $id)->first();
+        if (!$task) return response()->json("task not found", 500);
+        $task->task = $req->task;
+        $task->is_completed = $req->is_completed ?? 0;
+        $task->save();
+        return response()->json("updated successfully", 200);
     }
-     /**
+    /**
      * @OA\POST(
      *     path="/api/task",
      *     summary="create task",
@@ -75,18 +75,18 @@ class TaskController extends Controller
     public function post(Request $req)
     {
         $user_id = Auth::user()->id;
-        $query = Task::where('task',$req->task);
-        $query->where('user_id',$user_id); 
+        $query = Task::where('task', $req->task);
+        $query->where('user_id', $user_id);
         $task = $query->first();
-        if($task) return response()->json("task already exist",500);
+        if ($task) return response()->json("task already exist", 500);
         $task = new Task();
         $task->user_id = $user_id;
         $task->task = $req->task;
         $task->is_completed = 0;
         $task->save();
-        return response()->json("task added",200);
+        return response()->json("task added", 200);
     }
-     /**
+    /**
      * @OA\DELETE(
      *     path="/api/task/{id}",
      *     summary="delete task",
@@ -97,11 +97,11 @@ class TaskController extends Controller
      *     security={{"Authorization": {}}},   
      * )
      */
-    public function delete(Request $req,$id)
+    public function delete(Request $req, $id)
     {
-        $task = Task::where('id',$id)->first();
-        if(!$task) return response()->json("task not found",500);
+        $task = Task::where('id', $id)->first();
+        if (!$task) return response()->json("task not found", 500);
         $task->delete();
-        return response()->json("task deleted",200);
+        return response()->json("task deleted", 200);
     }
 }

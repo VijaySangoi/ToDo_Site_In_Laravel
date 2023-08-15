@@ -16,10 +16,9 @@ class Json
      */
     public function handle(Request $request, Closure $next)
     {
-        if(str_contains($request->url(),"api"))
-        {
-            $request->headers->set("Accept","application/json");
-            $request->headers->set("Content-Type","application/json");
+        if (str_contains($request->url(), "api")) {
+            $request->headers->set("Accept", "application/json");
+            $request->headers->set("Content-Type", "application/json");
         }
         return $next($request);
     }
