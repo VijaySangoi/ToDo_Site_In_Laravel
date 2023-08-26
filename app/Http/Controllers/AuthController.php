@@ -33,7 +33,7 @@ class AuthController extends Controller
     public function login(Request $req)
     {
         $ip = $req->ip();
-        if ($ip !== '127.0.0.1') return response()->json('only 127.0.0.1 allowed', 500);
+        if ($ip !== config('apex.allowed_ip')) return response()->json('only ' . config('apex.allowed_ip') . ' allowed', 500);
         $validated = Validator::make($req->all(), [
             'username' => 'required|max:12',
             'password' => 'required|max:15'
@@ -69,10 +69,10 @@ class AuthController extends Controller
     public function register(Request $req)
     {
         $ip = $req->ip();
-        if ($ip !== '127.0.0.1') return response()->json('only 127.0.0.1 allowed', 500);
+        if ($ip !== config('apex.allowed_ip')) return response()->json('only ' . config('apex.allowed_ip') . ' allowed', 500);
         $validated = Validator::make($req->all(), [
             'username' => 'required|max:12|unique:App\Models\User,username',
-            'email' => 'required|email:rfc,dns|unique:App\Models\User,email_address',
+            'email' => 'required|email:rfc,dns|unique:App\Models\User,email',
             'password' => 'required|max:15',
             'confirm_password' => 'required|same:password|max:15',
         ]);
