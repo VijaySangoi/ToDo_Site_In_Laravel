@@ -20,7 +20,7 @@ class TaskController extends Controller
      */
     public function get(Request $req)
     {
-        $task = Task::get();
+        $task = Task::where('user_id',Auth::user()->id)->get();
         if (!$task) return response()->json("task not found", 500);
         return response()->json($task, 200);
     }
