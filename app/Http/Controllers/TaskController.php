@@ -10,18 +10,19 @@ class TaskController extends Controller
 {
     /**
      * @OA\GET(
-     *     path="/api/task",
+     *     path="/api/task/{state}",
      *     summary="fetch task",
      *     description="list all task",
      *     tags={"Task"},
+     *     @OA\Parameter(name="state",in="path",description="only 0,1 allowed"),     
      *     @OA\Response(response=200,description="OK"),
      *     security={{"Authorization": {}}},   
      * )
      */
-    public function get(Request $req)
+    public function get(Request $req, $state)
     {
-        $task = Task::where('user_id',Auth::user()->id)->get();
-        if (!$task) return response()->json("task not found", 500);
+        $task = Task::where('user_id',Auth::user()->id)->where('is_completed',$state)->get();
+        if ($task->isEmpty()) return response()->json("task not found", 500);
         return response()->json($task, 200);
     }
     /**

@@ -20,7 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post("/login", [\App\Http\Controllers\AuthController::class, 'login']);
 Route::post("/register", [\App\Http\Controllers\AuthController::class, 'register']);
 Route::middleware(['auth:sanctum'])->group(function () {
-    Route::get("/task", [\App\Http\Controllers\TaskController::class, 'get']);
+    Route::get("/task/{state}", [\App\Http\Controllers\TaskController::class, 'get']);
     Route::post("/task", [\App\Http\Controllers\TaskController::class, 'post']);
     Route::put("/task/{id}", [\App\Http\Controllers\TaskController::class, 'put']);
     Route::delete("/task/{id}", [\App\Http\Controllers\TaskController::class, 'delete']);

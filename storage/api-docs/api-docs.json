@@ -101,55 +101,21 @@
                 }
             }
         },
-        "/api/task": {
+        "/api/task/{state}": {
             "get": {
                 "tags": [
                     "Task"
                 ],
                 "summary": "fetch task",
                 "description": "list all task",
-                "operationId": "a8b9b66ca125557838d9ecf2b6f94dd8",
-                "responses": {
-                    "200": {
-                        "description": "OK"
-                    }
-                },
-                "security": [
+                "operationId": "e11c9ae7cc257bdd3763ef229c60503f",
+                "parameters": [
                     {
-                        "Authorization": []
+                        "name": "state",
+                        "in": "path",
+                        "description": "only 0,1 allowed"
                     }
-                ]
-            },
-            "post": {
-                "tags": [
-                    "Task"
                 ],
-                "summary": "create task",
-                "description": "creation param",
-                "operationId": "4b0fa9acaea426467a868861522b8847",
-                "requestBody": {
-                    "description": "json body",
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "properties": {
-                                    "task": {
-                                        "description": "task to do",
-                                        "type": "string",
-                                        "example": "get a golden tooth"
-                                    },
-                                    "is_completed": {
-                                        "description": "status",
-                                        "type": "boolean",
-                                        "example": "0"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
                 "responses": {
                     "200": {
                         "description": "OK"
@@ -223,6 +189,49 @@
                         "in": "path"
                     }
                 ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ]
+            }
+        },
+        "/api/task": {
+            "post": {
+                "tags": [
+                    "Task"
+                ],
+                "summary": "create task",
+                "description": "creation param",
+                "operationId": "4b0fa9acaea426467a868861522b8847",
+                "requestBody": {
+                    "description": "json body",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "task": {
+                                        "description": "task to do",
+                                        "type": "string",
+                                        "example": "get a golden tooth"
+                                    },
+                                    "is_completed": {
+                                        "description": "status",
+                                        "type": "boolean",
+                                        "example": "0"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
                 "responses": {
                     "200": {
                         "description": "OK"
