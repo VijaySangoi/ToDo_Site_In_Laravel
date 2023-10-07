@@ -403,10 +403,10 @@
     <div class="relative flex items-top justify-center sm:items-center sm:pt-0" style="min-height: 100px; background:#eeeeff">
         @if (Route::has('login'))
         <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+            <a href="{{ '/api/documentation' }}" class="ml-4 text-sm text-gray-700 underline">Swagger Api</a>
             @auth
             <a href="{{ url('/home') }}" class="text-sm text-gray-700 underline">Home</a>
             @else
-            <a href="{{ '/api/documentation' }}" class="ml-4 text-sm text-gray-700 underline">Swagger Api</a>
             <a href="{{ route('login') }}" class="ml-4 text-sm text-gray-700 underline">Log in</a>
 
             @if (Route::has('register'))
