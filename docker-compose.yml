@@ -1,0 +1,16 @@
+# do not touch until you know what you are doing especially for rookies --vijay
+x-app-depends-on: &app-depends-on
+    - mysql
+version: 1.0.0
+services:
+    mysql:
+        build: docker/mysql
+        ports: 
+        - "3306:3306"
+        container_name: mysql
+    app:
+        build: docker/app
+        ports:
+        - "8000:80"
+        container_name: app
+        depends_on: *app-depends-on
