@@ -1,12 +1,11 @@
-FROM ubuntu:latest
+FROM ubuntu
 
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt update
 RUN apt install systemd -y
-RUN apt install apache2 -y
-RUN mkdir var/www/nothing_todo
-RUN apt install php-cli -y -q
-RUN apt install php-cgi -yq
-RUN apt install php-mysql -yq
+RUN apt install net-tools -y
+RUN apt install php -y -q
 RUN apt install composer -yq
-RUN service apache2 start
+RUN apt install apache2
+RUN mkdir var/www/nothing_todo
+CMD apachectl -D FOREGROUND

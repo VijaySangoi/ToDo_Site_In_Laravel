@@ -6,7 +6,7 @@ services:
     mysql:
         build: docker/mysql
         tty: true
-        ports: 
+        ports:
         - "3306:3306"
         container_name: mysql
     app:
@@ -14,9 +14,9 @@ services:
         tty: true
         env_file: .env
         ports:
-        - 80:80
+        - "80:80"
         container_name: app
         depends_on: *app-depends-on
-        volumes: 
+        volumes:
         - ./:/var/www/nothing_todo
         - ./docker/conf:/etc/apache2/sites-available
