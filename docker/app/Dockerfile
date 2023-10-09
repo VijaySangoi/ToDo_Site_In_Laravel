@@ -11,4 +11,4 @@ RUN apt install apache2
 RUN mkdir var/www/nothing_todo
 RUN sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
 RUN a2enmod rewrite
-CMD apachectl -D FOREGROUND
+ENTRYPOINT ["/var/www/nothing_todo/docker/app/startup.sh"]
