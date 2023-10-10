@@ -5,7 +5,6 @@ version: 1.0.0
 services:
     mysql:
         build: docker/mysql
-        tty: true
         ports:
         - "3306:3306"
         container_name: mysql
@@ -14,7 +13,6 @@ services:
             MYSQL_DATABASE: practice
     app:
         build: docker/app
-        tty: true
         env_file: .env
         ports:
         - "80:80"
